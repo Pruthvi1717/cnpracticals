@@ -1,0 +1,76 @@
+
+//Server
+import socket
+
+# Define server address and port
+server_address = ('localhost', 12345)
+
+# Create a UDP socket
+with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_server_socket:
+    # Bind the socket to the server address
+    udp_server_socket.bind(server_address)
+    print("Server is listening on port", server_address[1])
+
+    while True:
+        # Receive data from client
+        message, client_address = udp_server_socket.recvfrom(1024)
+        print(f"Received message from client: {message.decode()}")
+
+        # Send acknowledgment to client
+        ack_message = "ACK"
+        udp_server_socket.sendto(ack_message.encode(), client_address)
+        print("Sent acknowledgment to client")
+=------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/// client
+import socket
+import time
+
+# Define server address and port
+server_address = ('localhost', 12345)
+
+# Create a UDP socket
+with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as udp_client_socket:
+    udp_client_socket.settimeout(1.0)  # Set timeout for ACK
+    message_count = 1
+
+    while message_count <= 5:  # Send 5 messages for testing
+        try:
+            # Send message to server
+            message = f"Message {message_count}"
+            udp_client_socket.sendto(message.encode(), server_address)
+            print(f"Sent: {message}")
+
+            # Wait for acknowledgment from server
+            ack, _ = udp_client_socket.recvfrom(1024)
+            print(f"Received acknowledgment: {ack.decode()}")
+
+            # Only send the next message after receiving ACK
+            message_count += 1
+            time.sleep(1)  # Wait before sending the next message
+
+        except socket.timeout:
+            print("No ACK received, resending the message")
+            # Resend the same message if no acknowledgment is received
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// difference between tcp and udp
+
+TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are two essential protocols in network communications, 
+each with distinct characteristics suited to different applications. TCP is a connection-oriented protocol, meaning it establishes
+a connection between the sender and receiver before data transfer begins. This makes TCP highly reliable, as it guarantees that all
+data packets are delivered accurately and in the correct order. It achieves this by using error-checking, acknowledgments, and retransmissions 
+if packets are lost. However, these features make TCP slower and more resource-intensive, with greater packet overhead, which is ideal for applications
+requiring accuracy, such as web browsing, file transfers, and emails.
+
+In contrast, UDP is a connectionless protocol that sends data without setting up a dedicated connection,
+making it faster and more efficient for time-sensitive applications. UDP does not guarantee packet delivery or order, 
+nor does it include extensive error-checking and correction mechanisms like TCP. Instead, UDP simply transmits data packets,
+which are small and lightweight, and does not resend lost packets. This makes UDP suitable for applications where speed is prioritized 
+over reliability, such as live video streaming, online gaming, and Voice over IP (VoIP), where occasional packet loss is acceptable. 
+In summary, TCP emphasizes reliability and data integrity, while UDP focuses on speed and efficiency.
+
+
+
+
+
+
+
