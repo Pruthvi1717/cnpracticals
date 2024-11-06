@@ -1,0 +1,89 @@
+Here’s how you can implement and understand the functionality of network commands in Ubuntu that are equivalent to `GetMac`, `Route`, and `NetDiag` in Windows:
+
+---
+
+### 1. `GetMac` Equivalent
+- **Purpose**: To display the MAC (Media Access Control) addresses of the network interfaces.
+- **Equivalent in Ubuntu**: Use `ip` or `ifconfig`
+- **Usage**:
+  - Using `ip`:
+    ```bash
+    ip link show
+    ```
+  - Using `ifconfig`:
+    ```bash
+    ifconfig -a
+    ```
+- **Explanation**: 
+  - `ip link show` lists all the network interfaces and shows their MAC addresses (referred to as "link/ether").
+  - `ifconfig -a` provides details of all interfaces, including their MAC addresses, shown as "ether".
+
+---
+
+### 2. `Route`
+- **Purpose**: To display and modify the IP routing table.
+- **Usage in Ubuntu**:
+  ```bash
+  route -n
+  ```
+- **Explanation**:
+  - `route -n` displays the routing table, showing the network destination, gateway, netmask, and interface.
+  - The `-n` flag ensures the output is shown in numeric format, which speeds up the command since it avoids resolving names.
+- **Example**:
+  - To add a route (example to add a default gateway):
+    ```bash
+    sudo route add default gw 192.168.1.1
+    ```
+  - To delete a route:
+    ```bash
+    sudo route del -net 192.168.1.0 netmask 255.255.255.0
+    ```
+
+---
+
+### 3. `NetDiag` Equivalent
+- **Purpose**: `NetDiag` in Windows is used to diagnose and troubleshoot network problems. In Ubuntu, a combination of tools can be used for similar diagnostics.
+- **Tools to Use in Ubuntu**:
+  1. **`ping`**: To check connectivity.
+     ```bash
+     ping -c 4 google.com
+     ```
+  2. **`traceroute`**: To trace the route to a destination.
+     ```bash
+     traceroute google.com
+     ```
+  3. **`mtr`**: A combination of `ping` and `traceroute` for real-time diagnostics.
+     ```bash
+     mtr google.com
+     ```
+  4. **`ifconfig` or `ip`**: To check network interface status.
+     ```bash
+     ip address show
+     ```
+  5. **`netstat`**: To display network connections and routing tables.
+     ```bash
+     netstat -tuln
+     ```
+- **Explanation**:
+  - **`ping`**: Tests if a network device is reachable.
+  - **`traceroute`**: Finds the path taken to reach a destination, helping diagnose routing issues.
+  - **`mtr`**: Continuously tracks the route and shows packet loss and latency.
+  - **`netstat`**: Useful for viewing active connections and open ports.
+  - **`ip`/`ifconfig`**: Checks network interface details and status.
+
+---
+
+### Summary of Each Command
+1. **`ip link show`** (for MAC address):
+   - **Purpose**: Lists all network interfaces and their MAC addresses.
+   - **Usage**: Useful to identify devices on the network.
+
+2. **`route -n`**:
+   - **Purpose**: Displays the routing table.
+   - **Usage**: Helps to understand how network traffic is routed.
+
+3. **Diagnostic Tools (`ping`, `traceroute`, `mtr`, `netstat`)**:
+   - **Purpose**: Diagnose and troubleshoot network connectivity and performance issues.
+   - **Usage**: Used collectively to identify where network problems may be occurring.
+
+Let me know if you need more details on using these commands for specific network troubleshooting scenarios!
