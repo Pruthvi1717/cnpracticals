@@ -71,3 +71,26 @@ View the output in NAM by executing the generated trace file:
 csharp
 Copy code
 nam out.nam
+
+#####Extra point no need to write
+
+# Define the stop-and-wait protocol for UDP
+proc send-packet {} {
+    global ns udp0 null1 cbr
+    # Schedule the next packet only after receiving an acknowledgment
+    $ns at [expr [$ns now] + 0.01] "$cbr send"
+}
+
+# Modify the 'finish' procedure to stop after the simulation ends
+proc finish {} {
+    global ns nf
+    $ns flush-trace
+    close $nf
+    exec nam out.nam &
+    exit 0
+}
+
+# Call the send-packet function to start Stop-and-Wait
+$ns at 0.5 "send-packet"
+
+
