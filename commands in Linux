@@ -1,0 +1,201 @@
+Here’s a concise summary of commonly used network configuration and troubleshooting commands in Linux:
+
+### 1. `ifconfig`
+- **Purpose**: To view and configure network interface parameters.
+- **Usage**: 
+  ```bash
+  ifconfig
+  ```
+- **Explanation**: Shows IP addresses, netmask, and status of network interfaces. Useful for setting a static IP (though replaced by `ip` in newer systems).
+
+### 2. `ip`
+- **Purpose**: A modern replacement for `ifconfig`, used for network configuration.
+- **Usage**:
+  - View all IP addresses:
+    ```bash
+    ip address show
+    ```
+  - Bring an interface up or down:
+    ```bash
+    ip link set eth0 up
+    ip link set eth0 down
+    ```
+- **Explanation**: Provides more advanced control and options for network configuration.
+
+### 3. `ping`
+- **Purpose**: To test the reachability of a host and measure round-trip time.
+- **Usage**:
+  ```bash
+  ping [hostname or IP]
+  ```
+- **Explanation**: Sends ICMP packets to a host and waits for replies. Useful for checking if a host is reachable.
+
+### 4. `netstat`
+- **Purpose**: To display network connections, routing tables, and interface statistics.
+- **Usage**:
+  ```bash
+  netstat -tuln
+  ```
+- **Explanation**: Useful for listing active connections, open ports, and other network statistics.
+
+### 5. `ss`
+- **Purpose**: To display socket statistics, replacing `netstat`.
+- **Usage**:
+  ```bash
+  ss -tuln
+  ```
+- **Explanation**: Provides information about open TCP and UDP ports and listening sockets, often used for performance reasons.
+
+### 6. `traceroute`
+- **Purpose**: To trace the path packets take to a destination.
+- **Usage**:
+  ```bash
+  traceroute [hostname or IP]
+  ```
+- **Explanation**: Shows each hop taken to reach the destination, helping to diagnose where network delays occur.
+
+### 7. `nslookup`
+- **Purpose**: To query DNS records.
+- **Usage**:
+  ```bash
+  nslookup [domain]
+  ```
+- **Explanation**: Checks DNS name resolution, useful for troubleshooting domain-related issues.
+
+### 8. `dig`
+- **Purpose**: A more flexible tool for querying DNS records.
+- **Usage**:
+  ```bash
+  dig [domain]
+  ```
+- **Explanation**: Provides detailed information about DNS queries and responses.
+
+### 9. `route`
+- **Purpose**: To display and modify the IP routing table.
+- **Usage**:
+  ```bash
+  route -n
+  ```
+- **Explanation**: Lists the routing table, useful for troubleshooting routing issues.
+
+### 10. `arp`
+- **Purpose**: To view and manipulate the system’s ARP cache.
+- **Usage**:
+  ```bash
+  arp -a
+  ```
+- **Explanation**: Shows IP-to-MAC address mappings, which are useful in a local network environment.
+
+### 11. `hostname`
+- **Purpose**: To display or set the system’s hostname.
+- **Usage**:
+  ```bash
+  hostname
+  ```
+- **Explanation**: Simple way to check or change the computer’s hostname.
+
+### 12. `curl` or `wget`
+- **Purpose**: To test network connectivity and download data from URLs.
+- **Usage**:
+  ```bash
+  curl http://example.com
+  wget http://example.com
+  ```
+- **Explanation**: Useful for testing HTTP/HTTPS requests and diagnosing download issues.
+
+### 13. `tcpdump`
+- **Purpose**: To capture and analyze network packets.
+- **Usage**:
+  ```bash
+  sudo tcpdump -i eth0
+  ```
+- **Explanation**: Provides a way to inspect the data flowing through your network interface, useful for debugging complex network problems.
+
+### 14. `nmap`
+- **Purpose**: To scan networks and identify open ports and services.
+- **Usage**:
+  ```bash
+  nmap [IP or range]
+  ```
+- **Explanation**: Helps to perform a security audit or investigate network-related issues.
+
+### 15. `systemctl status networking`
+- **Purpose**: To check the status of the networking service.
+- **Usage**:
+  ```bash
+  systemctl status networking
+  ```
+- **Explanation**: Useful for verifying if the network service is active and running.
+
+Here’s how you can use these network configuration and troubleshooting commands with a real example, such as testing connectivity to **Google**:
+
+### 1. `ping`
+- **Purpose**: Check if Google is reachable and measure the response time.
+- **Usage**:
+  ```bash
+  ping -c 4 google.com
+  ```
+  (`-c 4` sends 4 packets and then stops)
+- **Explanation**: This sends packets to Google and waits for a reply, showing how quickly the connection responds.
+
+### 2. `ip`
+- **Purpose**: Check the IP configuration of your network interfaces.
+- **Usage**:
+  ```bash
+  ip address show
+  ```
+- **Explanation**: This displays details of your network interfaces, like IP addresses and connection status.
+
+### 3. `traceroute`
+- **Purpose**: Trace the path your connection takes to reach Google.
+- **Usage**:
+  ```bash
+  traceroute google.com
+  ```
+- **Explanation**: Shows each network hop between your device and Google’s servers, helpful to diagnose where any connection delay might be occurring.
+
+### 4. `nslookup`
+- **Purpose**: Query Google’s DNS information.
+- **Usage**:
+  ```bash
+  nslookup google.com
+  ```
+- **Explanation**: Retrieves DNS information about Google, like IP addresses linked to the domain.
+
+### 5. `dig`
+- **Purpose**: Perform a detailed DNS query for Google.
+- **Usage**:
+  ```bash
+  dig google.com
+  ```
+- **Explanation**: Gives comprehensive information about Google’s DNS records, such as A records (IP addresses).
+
+### 6. `curl` or `wget`
+- **Purpose**: Check if you can access Google’s website and see the response.
+- **Usage**:
+  ```bash
+  curl -I https://www.google.com
+  ```
+  (`-I` only fetches the headers)
+- **Explanation**: Shows the HTTP response headers from Google, useful to ensure the server is reachable and responsive.
+
+### 7. `nmap`
+- **Purpose**: Scan Google’s IP to see which ports are open (use carefully and ethically!).
+- **Usage**:
+  ```bash
+  nmap google.com
+  ```
+- **Explanation**: Lists open ports on Google’s server (Note: Google has security measures, so the scan results may be limited or blocked).
+
+### 8. `netstat`
+- **Purpose**: Check active connections, including those to Google.
+- **Usage**:
+  ```bash
+  netstat -an | grep :443
+  ```
+  (`:443` filters for HTTPS connections)
+- **Explanation**: Shows active connections on your machine, filtering for HTTPS (port 443) to see connections to services like Google.
+
+These examples will help you troubleshoot and test network connectivity specifically using a well-known site like Google. Let me know if you need any more explanations or have other network commands in mind!
+
+These commands cover a wide range of network configuration and troubleshooting tasks on Linux, from basic connectivity checks to more in-depth packet analysis. Let me know if you want more detail on any specific command or its options!
