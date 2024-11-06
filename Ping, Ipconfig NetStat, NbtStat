@@ -1,0 +1,70 @@
+Here's a brief explanation and implementation guide for the network commands `ping`, `ipconfig` (replaced by `ifconfig` on Ubuntu), `netstat`, and `nbtstat` (replaced by `nmblookup` for similar functionality in Ubuntu):
+
+### 1. `ping`
+- **Purpose**: To test the connectivity to another network device and measure round-trip time for messages sent from the local host to a destination device.
+- **Usage on Ubuntu**: 
+  ```bash
+  ping [destination]
+  ```
+  Example:
+  ```bash
+  ping google.com
+  ```
+- **Explanation**: Sends ICMP echo requests to the specified destination and listens for replies, reporting the round-trip time for each packet.
+
+### 2. `ifconfig` (similar to `ipconfig` in Windows)
+- **Purpose**: To view or configure a network interface’s IP address, netmask, and other parameters.
+- **Usage on Ubuntu**:
+  ```bash
+  ifconfig
+  ```
+  - Note: `ifconfig` may be deprecated on some newer Ubuntu systems; `ip` is preferred:
+    ```bash
+    ip address show
+    ```
+- **Explanation**: Displays the configuration details of all active network interfaces on the system, such as IP addresses, MAC addresses, and more.
+
+### 3. `netstat`
+- **Purpose**: To display network connections, routing tables, interface statistics, masquerade connections, and multicast memberships.
+- **Usage on Ubuntu**:
+  ```bash
+  netstat -a
+  ```
+- **Explanation**: Lists all active connections, listening ports, and other network-related statistics. Useful for diagnosing network issues or monitoring traffic.
+
+### 4. `nbtstat` (replaced by `nmblookup` in Ubuntu)
+- **Purpose**: `nbtstat` is a Windows command used to troubleshoot NetBIOS over TCP/IP. On Ubuntu, `nmblookup` serves a similar purpose.
+- **Usage on Ubuntu**:
+  ```bash
+  nmblookup -A [IP Address]
+  ```
+- **Explanation**: Queries NetBIOS names and maps IP addresses to NetBIOS names for devices within the same network. This is commonly used in local area networks (LANs) to resolve computer names.
+
+### Running Commands in Terminal:
+1. **To test network connectivity using `ping`**:
+   ```bash
+   ping -c 4 example.com
+   ```
+   (`-c 4` sends 4 packets and stops)
+
+2. **To check network configuration using `ifconfig`**:
+   ```bash
+   ifconfig
+   ```
+   - Or, using the preferred `ip` command:
+     ```bash
+     ip a
+     ```
+
+3. **To check network statistics using `netstat`**:
+   ```bash
+   netstat -tuln
+   ```
+   (`-t` for TCP, `-u` for UDP, `-l` for listening, `-n` to show numeric addresses)
+
+4. **To look up NetBIOS names using `nmblookup`**:
+   ```bash
+   nmblookup -A 192.168.1.1
+   ```
+
+Let me know if you need further explanation on any command or assistance with network troubleshooting!
