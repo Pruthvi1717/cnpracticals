@@ -1,0 +1,65 @@
+
+
+
+
+
+Wireshark is one of the most robust and powerful open-source packet sniffers. It is both an interactive packet sniffing tool and an analysis tool. Wireshark is the most popular packet sniffer currently. One of the reasons is its open-source availability and cross-platform compatibility. It can run on Windows, Linux and, Mac, is user-friendly and easy to capture and view data because of the attractive graphical user interface. Wireshark is one of the best tools for intercepting packets going across a target network, as well as read the contents of each packet in a human-readable format which can be filtered and colour-coded to meet specific requirements. It has a wide array of features that are mainly used to troubleshoot network problems and for the analysis and testing of software. Explore Wireshark with us.
+
+Download and Install
+As mentioned above, it is open-source software, so it is available for download free of cost. You can download it for both Windows and MacOS from the official Wireshark website. For Linux or other UNIX-like systems, Wireshark is probably present in the package repositories. It comes pre-installed in the Kali Linux OS.
+
+Wireshark GUI
+On launching the application, we get a welcome screen that has the various network interfaces available for your device listed. In this case, we have Local Area Connection, Ethernet and Wi-fi. The small graph to the right of each represents the flow of live traffic on the interface.
+
+The main menu at the top displays the various options that Wireshark is equipped with, we’ll look at how to use the Capture, Analyze and Statistics choices.
+
+Capture packets
+
+Capture network packets
+Network sniffing can be used to capture sensitive data like login credentials or to capture files sent over a network. Various protocols such as HTTP, Telnet, IMAP, FTP, SMTP among others are vulnerable to sniffing.
+
+To begin capturing data, click on any one network interface which has some live transmission occurring. A drop-down menu will appear when you click on capture in the main menu, click on Start. To initiate capture with a keyboard, press CTRL+E.
+
+The low-level packets transmitted over that particular network that Wireshark captures live and displayed in the default colour-coding.
+
+Capture packets
+
+To stop capturing, Capture->Stop or press CTRL+E.
+
+Colour coding
+In order to know what protocol each colour implies, go to View->Colouring Rules.
+
+You can also modify the code according to your preferences or turn off all colour coding.
+
+Color coding
+
+Analyze captured content
+When dealing with a heavy traffic network, the filtering capabilities of Wireshark come in handy. You can specify at the start to only capture certain types of packets or filter them out later. This can be done to a live capture as well as an already saved .pcapng file.
+
+You can see the default filters by navigating to Analyze->Display FIlters.
+
+Filter packets
+
+If you know the name of the filter you want to apply, start typing it in the ‘Apply a display filter’ field. It will turn green if your input is a valid field. You can add your filters to the bookmarks for future or repeated use, which can be found to the left of the input field.
+
+Example: Applied a filter ‘icmpv6’ to captured packets.
+
+icmpv6 example
+
+Now let’s look at a deeper analysis of individual packets.
+
+Each packet has timestamp and frame details, that tells us about the packet creation time and in which frame exactly it is transmitting. Other details include the source and destination address. Next comes the individual protocol details, where the packets specify their headers and payload portions. One can get an idea about all data contained in this particular packet and which other packets linked to this packet by looking at the data stored in the header. At the very bottom, we can see the raw version of the same data in a hexadecimal view.
+
+Individual packet analysis
+
+Statistics
+Its use is to bind all the extensive data and to see the captured packets from a bird’s eye view. Moreover, statistics has several important tools which are used to see file properties, protocol hierarchy or other statistics for individual protocols. A variety of charts and graphs are also available to see Transport protocol stream graphs or Input/Output data graph.
+
+Statistics
+statistics 2.0
+
+All these statistic data outputs can be saved and exported to several common file formats such as .txt, .xml and .csv
+
+This tutorial barely scratched the surface of Wireshark. It is an extremely powerful tool that has additional advanced functionality such as the ability to write personalised protocol dissectors in the Lua programming language.
+
+Wireshark is the industry standard for network packet sniffing and analysis and every Security professional must be aware of what is going on with the network on which they work.
