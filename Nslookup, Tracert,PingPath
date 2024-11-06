@@ -1,0 +1,62 @@
+Here’s how to implement the network troubleshooting commands `nslookup`, `traceroute` (similar to `tracert` in Windows), and a Linux alternative to `pingpath`.
+
+---
+
+### 1. `nslookup`
+- **Purpose**: To query DNS servers to obtain domain name or IP address mapping.
+- **Usage**:
+  ```bash
+  nslookup google.com
+  ```
+- **Explanation**:
+  - This command queries the DNS to find the IP address associated with a domain (or vice versa).
+  - It provides details about the DNS server used and the answer received, helpful for diagnosing DNS resolution issues.
+
+---
+
+### 2. `traceroute` (similar to `tracert` in Windows)
+- **Purpose**: To trace the route packets take to a destination, showing each hop on the way and the delay at each point.
+- **Usage**:
+  ```bash
+  traceroute google.com
+  ```
+  - If `traceroute` is not installed, you can install it using:
+    ```bash
+    sudo apt-get install traceroute
+    ```
+- **Explanation**:
+  - This command sends packets to the destination and tracks each router (hop) the packets pass through.
+  - Useful for diagnosing network issues by showing where packets are delayed or lost.
+
+---
+
+### 3. **`pingpath` Alternative in Linux**
+- **Note**: `pingpath` is not a standard command in Linux. However, similar functionality can be achieved using a combination of `mtr` (My Traceroute), which combines the features of `ping` and `traceroute`.
+- **Installing `mtr`**:
+  ```bash
+  sudo apt-get install mtr
+  ```
+- **Usage**:
+  ```bash
+  mtr google.com
+  ```
+- **Explanation**:
+  - `mtr` provides a continuous, real-time view of the route packets take to the destination, combining ping and traceroute functionalities.
+  - It shows packet loss and latency to each hop, updating dynamically, making it more comprehensive for network diagnostics.
+
+---
+
+### Summary of Each Command
+1. **`nslookup`**:
+   - **Purpose**: Query DNS for domain-to-IP mappings.
+   - **Usage**: Helps verify if DNS resolution is working correctly.
+
+2. **`traceroute`**:
+   - **Purpose**: Trace the path packets take to a destination.
+   - **Usage**: Useful for identifying where network delays or failures occur.
+
+3. **`mtr`**:
+   - **Purpose**: Real-time analysis of the packet path, combining ping and traceroute.
+   - **Usage**: Provides a continuous overview of network performance, highlighting packet loss and latency.
+
+These commands are essential for diagnosing network issues and understanding packet travel paths. Let me know if you need more details or examples!
